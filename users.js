@@ -54,15 +54,13 @@ async function userDataSerial(user){
  * Task 2: Send a login request for user1 -> get user profile data and get user posts data simultaneously
  */
 
-async function userDataParallel(user) {
+async function userDataParallel() {
   console.time('userData-parallel');
-  const userid = await sendUserLoginRequest(user);
-  const userProfile= await getUserProfile(userid);
-  console.log(userProfile);
-  const userPosts = await getUserPosts(userid);
-  console.log(userPosts)
+  await sendUserLoginRequest('user1');
+  await getUserProfile('user1').then((userProfile)=>console.log(userProfile));
+  await getUserPosts('user1').then((userPosts)=>console.log(userPosts));
   console.timeEnd('userData-parallel');
 }
 
-userDataSerial(user1);
-userDataParallel(user1);
+userDataSerial('user1');
+userDataParallel();
