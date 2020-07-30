@@ -120,35 +120,30 @@ function getCards(listId, callback) {
 
 // Task 1 board -> lists -> cards for list qwsa221
 
-function task1(id,callback){
-  getBoard((board)=>{
-    //console.log(board)
-    getLists(board.id,(lists)=>{
-      let ourList=lists.filter((list)=>list.id===id);
-      console.log(ourList)
-      //let list_id=ourList.map((list)=> list.id);
-      let list_id=ourList[0].id;
-      //console.log(list_id);
-      getCards(list_id,(card)=>{
+function task1(id, callback) {
+  getBoard((board) => {
+    getLists(board.id, (lists) => {
+      let ourList = lists.filter((list) => list.id === id);
+      console.log(ourList);
+      let list_id = ourList[0].id;
+      getCards(list_id, (card) => {
         callback(card);
-      })
-    })
-  }) 
+      });
+    });
+  });
 }
 
-task1('qwsa221',function(card){
+task1("qwsa221", function (card) {
   console.log(card);
-})
+});
 
 
 // Task 2 board -> lists -> cards for list qwsa221 and cards for list jwkh245 simultaneously
 
 function task2(id1,id2,callback){
   getBoard((board)=>{
-    //console.log(board)
     getLists(board.id,(lists)=>{
       let ourList=lists.filter((list)=>list.id===id1||list.id==id2);
-      //console.log(ourList)
       ourList.map((list)=>{
         getCards(list.id,(card)=>{
           callback(card);
@@ -168,7 +163,6 @@ task2('qwsa221','jwkh245',function(card){
 
 function task3(callback){
   getBoard((board)=>{
-    //console.log(board)
     getLists(board.id,(lists)=>{
       lists.map((list)=>{
         getCards(list.id,(card)=>{
