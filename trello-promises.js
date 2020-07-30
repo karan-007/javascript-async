@@ -126,48 +126,40 @@ function getCards(listId) {
 
 // Task 1 board -> lists -> cards for list qwsa221
 
-function task1(id){
-  getBoard()
-  .then((board)=>
-  getLists(board.id)
-  .then((lists)=>{
-  let ourList=lists.filter((list)=>list.id===id);
-  let list_id=ourList[0].id
-  getCards(list_id)
-  .then((card)=>console.log(card))
-  }
-  ))
+function task1(id) {
+  getBoard().then((board) =>
+    getLists(board.id).then((lists) => {
+      let ourList = lists.filter((list) => list.id === id);
+      let list_id = ourList[0].id;
+      getCards(list_id).then((card) => console.log(card));
+    })
+  );
 }
-task1('qwsa221');
+task1("qwsa221");
+
 
 
 // Task 2 board -> lists -> cards for list qwsa221 and cards for list jwkh245 simultaneously
 
-function task2(id1,id2){
-  getBoard()
-  .then((board)=>
-  getLists(board.id)
-  .then((lists)=>{
-  let ourList=lists.filter((list)=>list.id===id1||list.id===id2);
-  ourList.map((list)=>getCards(list.id)
-  .then((card)=>console.log(card))
-  )
-  }
-  ))
+function task2(id1, id2) {
+  getBoard().then((board) =>
+    getLists(board.id).then((lists) => {
+      let ourList = lists.filter((list) => list.id === id1 || list.id === id2);
+      ourList.map((list) =>
+        getCards(list.id).then((card) => console.log(card))
+      );
+    })
+  );
 }
-task2('qwsa221','jwkh245');
+task2("qwsa221", "jwkh245");
 
 // Task 3 board -> lists -> cards for all lists simultaneously
 
-function task3(){
-  getBoard()
-  .then((board)=>
-  getLists(board.id)
-  .then((lists)=>{
-  lists.map((list)=>getCards(list.id)
-  .then((card)=>console.log(card))
-  )
-  }
-  ))
+function task3() {
+  getBoard().then((board) =>
+    getLists(board.id).then((lists) => {
+      lists.map((list) => getCards(list.id).then((card) => console.log(card)));
+    })
+  );
 }
 task3();
