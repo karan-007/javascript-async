@@ -39,28 +39,28 @@ function getUserPosts(userId){
  * Task 1: Send a login request for user1 -> get user profile data -> get user posts data
  */
 
-async function userDataSerial(user){
-  console.time('userData-serial');
+async function userDataSerial(user) {
+  console.time("userData-serial");
   // Write code here
   await sendUserLoginRequest(user)
-  .then((userid)=>getUserProfile(userid))
-  .then((userProfile)=>console.log(userProfile))
-  .then((next)=>getUserPosts(user))
-  .then((userPosts)=>console.log(userPosts))
-  console.timeEnd('userData-serial');
+    .then((userid) => getUserProfile(userid))
+    .then((userProfile) => console.log(userProfile))
+    .then((next) => getUserPosts(user))
+    .then((userPosts) => console.log(userPosts));
+  console.timeEnd("userData-serial");
 }
 
+userDataSerial('user1');
 /**
  * Task 2: Send a login request for user1 -> get user profile data and get user posts data simultaneously
  */
 
 async function userDataParallel() {
-  console.time('userData-parallel');
-  await sendUserLoginRequest('user1');
-  getUserProfile('user1').then((userProfile)=>console.log(userProfile));
-  getUserPosts('user1').then((userPosts)=>console.log(userPosts));
-  console.timeEnd('userData-parallel');
+  console.time("userData-parallel");
+  await sendUserLoginRequest("user1");
+  getUserProfile("user1").then((userProfile) => console.log(userProfile));
+  getUserPosts("user1").then((userPosts) => console.log(userPosts));
+  console.timeEnd("userData-parallel");
 }
 
-userDataSerial('user1');
 userDataParallel();
