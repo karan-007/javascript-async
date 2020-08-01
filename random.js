@@ -57,11 +57,12 @@ task2();
 
 function task3(){
   let result="";
-  fetchRandomNumbers()
-    .then((randomNum)=>result+=randomNum);
-  fetchRandomString()
-    .then((randomStr)=>result+=randomStr)
-    .then(()=>console.log(result));
+  let randomNum= fetchRandomNumbers();
+  let randomStr= fetchRandomString();
+  randomNum.then((r)=>result+=r)
+  .then(()=>randomStr)
+  .then((r)=>result+=r)
+  .then(()=>console.log(result))
 }
 
 task3();
