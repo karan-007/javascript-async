@@ -36,14 +36,16 @@ function fetchRandomString() {
 //-> add it to the same sum variable and print the sum variable.
 
 function task2() {
-  let sum = 10;
+    let sum = 0;
   fetchRandomNumbers()
     .then((randomNum) => {
-      console.log(randomNum + sum);
+      sum+=randomNum;
+      console.log(sum);
     })
-    .then((next) => {
+    .then(() => {
       fetchRandomNumbers().then((randomNum) => {
-        console.log(randomNum + sum);
+        sum+=randomNum
+        console.log(sum);
       });
     });
 }
