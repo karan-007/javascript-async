@@ -56,13 +56,11 @@ task2();
 //and print the concatenated string
 
 function task3(){
-  let result="";
   let randomNum= fetchRandomNumbers();
   let randomStr= fetchRandomString();
-  randomNum.then((r)=>result+=r)
-  .then(()=>randomStr)
-  .then((r)=>result+=r)
-  .then(()=>console.log(result))
+  Promise.all([randomNum,randomStr]).then((r)=>{
+    console.log(r[0]+r[1]);
+  })
 }
 
 task3();
@@ -71,12 +69,16 @@ task3();
 
 function task4(){
   let sum=0;
-   for(i=0;i<10;i++){
-    fetchRandomNumbers().then((randomNum)=>sum+=randomNum);
+  let arr=[];
+  for(i=0;i<10;i++){
+    arr.push(fetchRandomNumbers());
   }
-  setTimeout(() => {
-    console.log(sum)
-  }, 7000)
+  Promise.all(arr).then((r)=>{
+    var sum = r.reduce(function(a, b){
+      return a + b;
+    });
+    console.log(sum);
+  });
 }
 
 task4();
